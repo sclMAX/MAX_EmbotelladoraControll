@@ -4,7 +4,9 @@
 #include "Arduino.h"
 
 class Botella{
-    
+    public:
+        Botella();
+
 };
 
 #endif //BOTELLA_H
