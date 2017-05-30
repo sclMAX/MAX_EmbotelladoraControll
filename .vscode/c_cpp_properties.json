@@ -44,7 +44,9 @@
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/shared",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/winrt",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
-                "C:\\Users\\MAX\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.6.18\\cores\\arduino"
+                "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\TimeAlarms",
+                "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\Time",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\LiquidCrystal\\src"
             ],
             "defines": [
                 "_DEBUG",
