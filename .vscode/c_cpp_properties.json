@@ -38,12 +38,14 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceRoot}",
+                "E:/Proyectos/Cerveza/MAX_EmbotelladoraControll",
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/um",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/ucrt",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/shared",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/winrt",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
+                "C:/Users/MAX/Documents/Arduino/libraries/Keypad/src",
                 "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\TimeAlarms",
                 "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\Time",
                 "C:\\Program Files (x86)\\Arduino\\libraries\\LiquidCrystal\\src"
@@ -54,11 +56,17 @@
             ],
             "browse": {
                 "path": [
+                    "E:/Proyectos/Cerveza/MAX_EmbotelladoraControll",
                     "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/um",
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/ucrt",
                     "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/shared",
-                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/winrt"
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.10586.0/winrt",
+                    "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
+                    "C:/Users/MAX/Documents/Arduino/libraries/Keypad/src",
+                    "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\TimeAlarms",
+                    "C:\\Users\\MAX\\Documents\\Arduino\\libraries\\Time",
+                    "C:\\Program Files (x86)\\Arduino\\libraries\\LiquidCrystal\\src"
                 ],
                 "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""

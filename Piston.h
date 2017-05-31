@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 
-volatile bool isEmergencia = false;
 
 class Piston {
 private:
@@ -12,8 +11,8 @@ private:
 
 public:
   Piston(uint16_t pin);
-  static void on();
-  static void off();
+  void on();
+  void off();
   bool isOn();
 };
 #endif

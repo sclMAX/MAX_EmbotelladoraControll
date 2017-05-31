@@ -13,4 +13,7 @@ typedef struct {
   uint16_t tEstBeer = 2;             // (Seg.) Estabilizacion presion beer.
   uint16_t tEstCO2 = 2;              // (Seg.) Estabilizacion presion CO2.
 } TBotella;
+#define botellasTam 4
+extern TBotella botellas[botellasTam];
+unsigned short currentBotella = 0;
 #endif // BOTELLA_H

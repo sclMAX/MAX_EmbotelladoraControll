@@ -14,9 +14,13 @@
 #define RPOS_BOTELLA 3
 #define RCOMUN 1
 //</RETARDOS>
+//<TECLADO>
+#define PINS_TECLADO_ROW 7, 6, 5, 4
+#define PINS_TECLADO_COL 3, 2, 1, 0
+//</TECLADO>
 
 //<LCD>
-//LiquidCrystal lcd(7, 8, 9, 10, 11, 12); //    ( RS, EN, d4, d5, d6, d7)
+// LiquidCrystal lcd(7, 8, 9, 10, 11, 12); //    ( RS, EN, d4, d5, d6, d7)
 #define RS 8
 #define EN 9
 #define D4 10

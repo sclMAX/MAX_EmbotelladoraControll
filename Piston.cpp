@@ -1,23 +1,17 @@
 #include "Piston.h"
 #include "config.h"
 
-Piston::Piston(uint16_t pin) : pin(pin)
-{
+Piston::Piston(uint16_t pin) : pin(pin) {
   pinMode(pin, OUTPUT);
   off();
 };
 
-void Piston::on()
-{
-  if (!isEmergencia)
-  {
-    digitalWrite(pin, HIGH);
-    onOff = true;
-  }
+void Piston::on() {
+  digitalWrite(pin, HIGH);
+  onOff = true;
 };
 
-void Piston::off()
-{
+void Piston::off() {
   digitalWrite(pin, LOW);
   onOff = false;
 };
