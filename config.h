@@ -24,6 +24,4 @@
 #define D6 12
 #define D7 13
 //</LCD>
-
-volatile bool isEmergencia = false;
 #endif // CONFIG_H

@@ -1,4 +1,5 @@
 {
     "sketch": "MAX_EmbotelladoraControll.ino",
-    "board": "arduino:avr:uno"
+    "board": "arduino:avr:uno",
+    "port": "/dev/ttyUSB0"
 }

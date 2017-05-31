@@ -23,7 +23,7 @@ void finLlenado() { isInProceso = false; }
 
 void llenarBotella(TBotella &b) {
   if (!isInProceso) {
-    ulong ct = 0;
+    uint16_t ct = 0;
     isInProceso = true;
     PDesplazamiento.on();               // Posicionar Botella en llenador
     ct += RPOS_BOTELLA;                 // Espera posicion botella
