@@ -2,11 +2,11 @@
 #define UIMAIN_H
 
 #include "globalVars.h"
-void uiMainTecladoHandler(char &key){
 
+void uiMainTecladoHandler(char &key) {
+  lcd.clear();
+  lcd.print(key);
 }
 
-void uiMainPantallaHandler(){
-    
-}
-#endif //UIMAIN_H
+void uiMainPantallaHandler() {}
+#endif // UIMAIN_H

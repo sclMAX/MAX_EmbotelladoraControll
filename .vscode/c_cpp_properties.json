@@ -22,15 +22,25 @@
             "includePath": [
                 "${workspaceRoot}",
                 "/usr/include",
-                "/usr/local/include"
+                "/usr/local/include",
+                "/home/max/Documentos/Proyectos/Cerveza/MAX_EmbotelladoraControll",
+                "/home/max/Programas/arduino-1.8.2/hardware/arduino/avr/cores/arduino",
+                "/home/max/Arduino/libraries/Time",
+                "/home/max/Arduino/libraries/TimeAlarms",
+                "/home/max/Programas/arduino-1.8.2/libraries/LiquidCrystal/src"
             ],
             "defines": [],
             "browse": {
                 "path": [
                     "/usr/include",
-                    "/usr/local/include"
+                    "/usr/local/include",
+                    "/home/max/Documentos/Proyectos/Cerveza/MAX_EmbotelladoraControll",
+                    "/home/max/Programas/arduino-1.8.2/hardware/arduino/avr/cores/arduino",
+                    "/home/max/Arduino/libraries/Time",
+                    "/home/max/Arduino/libraries/TimeAlarms",
+                    "/home/max/Programas/arduino-1.8.2/libraries/LiquidCrystal/src"
                 ],
-                "limitSymbolsToIncludedHeaders": true,
+                "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
             }
         },
