@@ -9,8 +9,6 @@
 TBotella bot330;
 void setup() {
   pantallaInit();
-  llenarBotella(bot330); //######### PRUEBAS SOLAMENTE #####
-  delay(3000);           //######### PRUEBAS SOLAMENTE #####
 }
 
 void loop() {

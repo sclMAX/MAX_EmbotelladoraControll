@@ -12,6 +12,7 @@ void pantallaInit() {
   lcd.setCursor(0, 1);
   lcd.print("  v1.0 by MAX   ");
   delay(3000);
+  lcd.clear();
 }
 void pantallaHandler() {
   switch (currentUi) {
