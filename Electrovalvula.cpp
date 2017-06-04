@@ -6,12 +6,12 @@ Electrovalvula::Electrovalvula(uint16_t pin) : pin(pin) {
 };
 
 void Electrovalvula::on() {
-    digitalWrite(pin, HIGH);
+    digitalWrite(pin, LOW);
     onOff = true;
 };
 
 void Electrovalvula::off() {
-  digitalWrite(pin, LOW);
+  digitalWrite(pin, HIGH);
   onOff = false;
 };
 

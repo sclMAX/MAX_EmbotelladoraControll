@@ -89,6 +89,16 @@ char *ftostr41sign(const float &x) {
   conv[6] = '\0';
   return conv;
 }
+// Convert float to string with +123.4 / -123.4 format
+char *ftostr21(const float &x) {
+  long xx = abs(x * 100);
+  conv[0] = DIGIMOD(xx / 1000);
+  conv[1] = DIGIMOD(xx / 100);
+  conv[2] = '.';
+  conv[3] = DIGIMOD(xx / 10);
+  conv[4] = '\0';
+  return conv;
+}
 
 // Convert signed float to string with 023.45 / -23.45 format
 char *ftostr32(const float &x) {

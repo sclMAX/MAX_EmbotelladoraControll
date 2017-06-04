@@ -1,10 +1,11 @@
 #ifndef TECLADO_H
 #define TECLADO_H
 
-#include <Key.h>
-#include <Keypad.h>
 #include "config.h"
 #include "globalVars.h"
+#include "uiEdit.h"
+#include <Key.h>
+#include <Keypad.h>
 
 const byte rows = 4;
 const byte cols = 4;
@@ -23,6 +24,9 @@ void tecladoHandler() {
     switch (currentUi) {
     case UIMAIN:
       uiMainTecladoHandler(key);
+      break;
+    case UIEDIT:
+      uiEditTecladoHandler(key);
       break;
     }
   }

@@ -7,12 +7,12 @@ Piston::Piston(uint16_t pin) : pin(pin) {
 };
 
 void Piston::on() {
-  digitalWrite(pin, HIGH);
+  digitalWrite(pin, LOW);
   onOff = true;
 };
 
 void Piston::off() {
-  digitalWrite(pin, LOW);
+  digitalWrite(pin, HIGH);
   onOff = false;
 };
 

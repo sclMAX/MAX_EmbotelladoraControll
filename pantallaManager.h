@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #include "globalVars.h"
 #include "uiMain.h"
+#include "uiEdit.h"
 
 void pantallaInit() {
   lcd.begin(16, 2);
@@ -18,6 +19,9 @@ void pantallaHandler() {
   switch (currentUi) {
   case UIMAIN:
     uiMainPantallaHandler();
+    break;
+  case UIEDIT:
+    uiEditPantallaHandler();
     break;
   }
 }
