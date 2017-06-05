@@ -8,8 +8,10 @@
 void uiMainTecladoHandler(char &key) {
   switch (key) {
   case '1' ... '6':
-    lcd.clear();
-    currentBotella = String(key).toInt()-1;
+    if (!isInProceso) {
+      lcd.clear();
+      currentBotella = String(key).toInt() - 1;
+    }
 
     break;
   case 'A':
@@ -17,8 +19,10 @@ void uiMainTecladoHandler(char &key) {
     llenarBotella(botellas[currentBotella]);
     break;
   case 'B':
-    lcd.clear();
-    currentUi = UIEDIT;
+    if (!isInProceso) {
+      lcd.clear();
+      currentUi = UIEDIT;
+    }
     break;
   }
 }

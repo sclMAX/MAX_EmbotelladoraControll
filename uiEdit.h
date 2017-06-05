@@ -3,6 +3,7 @@
 
 #include "Botella.h"
 #include "globalVars.h"
+#include "configStorage.h"
 short currentItem = 0;
 volatile bool isInEditItem = false;
 String data = "";
@@ -80,6 +81,7 @@ void uiEditTecladoHandler(char &key) {
         botellas[currentBotella].tEstCO2 = data.toInt();
         break;
       }
+      saveConfig();
     }
     break;
   }
@@ -129,14 +131,14 @@ void uiEditPantallaHandler() {
     drawItem(1, true, "TCO2 Carg:", botellas[currentBotella].tCargaCO2_Barrido);
     break;
   case 4:
-    drawItem(0, false,
-             "TCO2 Carg:", botellas[currentBotella].tCargaCO2_Barrido);
-    drawItem(1, true,
-             "TCO2 Desc:", botellas[currentBotella].tDescargaCO2_Barrido);
+    drawItem(0, false, "TCO2 Carg:",
+             botellas[currentBotella].tCargaCO2_Barrido);
+    drawItem(1, true, "TCO2 Desc:",
+             botellas[currentBotella].tDescargaCO2_Barrido);
     break;
   case 5:
-    drawItem(0, false,
-             "TCO2 Desc:", botellas[currentBotella].tDescargaCO2_Barrido);
+    drawItem(0, false, "TCO2 Desc:",
+             botellas[currentBotella].tDescargaCO2_Barrido);
     drawItem(1, true, "T Llenado:", botellas[currentBotella].tCargaBeer);
     break;
   case 6:
