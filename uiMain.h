@@ -7,29 +7,27 @@
 
 void uiMainTecladoHandler(char &key) {
   switch (key) {
-  case '0' ... '9':
-    if (!isInProceso) {
-      currentBotella = String(key).toInt();
-    }
+  case '1' ... '6':
+    lcd.clear();
+    currentBotella = String(key).toInt()-1;
+
     break;
   case 'A':
+    lcd.clear();
     llenarBotella(botellas[currentBotella]);
     break;
   case 'B':
+    lcd.clear();
     currentUi = UIEDIT;
     break;
   }
 }
 
 void uiMainPantallaHandler() {
-  /*[################]
-  **[B1 C 330   L00.0]
-  **[           U0000]
-  */
   lcd.setCursor(0, 0);
   lcd.print("B");
   lcd.setCursor(1, 0);
-  lcd.print(currentBotella);
+  lcd.print((currentBotella + 1));
   lcd.setCursor(2, 0);
   lcd.print(" C");
   lcd.setCursor(4, 0);

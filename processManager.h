@@ -105,7 +105,6 @@ void llenarBotella(TBotella &b) {
     uint16_t ct = 0;
     isInProceso = true;
     botellaToLlenado(); // Posicionar Botella en llenador
-
     ct += RPOS_BOTELLA;                 // Espera posicion botella
     Alarm.timerOnce(ct, llenadorBajar); // Baja el llenador
     ct += b.tMovLlenador;               // Espera Bajada llenador.
