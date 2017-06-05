@@ -24,6 +24,12 @@ void uiMainTecladoHandler(char &key) {
       currentUi = UIEDIT;
     }
     break;
+  case 'C':
+    isEmergencia = true;
+    break;
+  case 'D':
+    restaurarEmergencia();
+    break;
   }
 }
 
