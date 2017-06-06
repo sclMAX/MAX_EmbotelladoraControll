@@ -35,7 +35,7 @@ void uiMainTecladoHandler(char &key) {
 
 void uiMainPantallaHandler() {
   lcd.setCursor(0, 0);
-  lcd.print("B");
+  lcd.print(F("B"));
   lcd.setCursor(1, 0);
   lcd.print((currentBotella + 1));
   lcd.setCursor(2, 0);
@@ -53,10 +53,10 @@ void uiMainPantallaHandler() {
   if (isInProceso) {
     lcd.print(msgProcesoActual);
   } else {
-    lcd.print("[A]In [B]Ed ");
+    lcd.print(F("[A]In [B]Ed "));
   }
   lcd.setCursor(12, 1);
-  lcd.print("U");
+  lcd.print(F("U"));
   lcd.setCursor(13, 1);
   lcd.print(cantBotellas);
 }

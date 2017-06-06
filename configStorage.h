@@ -29,6 +29,13 @@ void readConfig() {
       EEPROM.put(eeAdress, botellas[i]);
       eeAdress += sizeof(TBotella);
     }
+  }else{
+    botellas[0].capacidad = 330;
+    botellas[1].capacidad = 450;
+    botellas[2].capacidad = 500;
+    botellas[3].capacidad = 710;
+    botellas[4].capacidad = 740;
+    botellas[5].capacidad = 970;
   }
 }
 

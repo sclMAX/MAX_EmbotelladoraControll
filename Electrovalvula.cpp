@@ -1,6 +1,6 @@
 #include "Electrovalvula.h"
 
-Electrovalvula::Electrovalvula(uint16_t pin) : pin(pin) {
+Electrovalvula::Electrovalvula(byte pin) : pin(pin) {
   pinMode(pin, OUTPUT);
   off();
 };

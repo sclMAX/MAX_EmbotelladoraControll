@@ -26,13 +26,13 @@ bool isInProceso = false;
 bool isEmergencia = false;
 uint16_t cantBotellas = 0;
 unsigned long cantBeer = 0;
-String msgProcesoActual = "";
+__FlashStringHelper *msgProcesoActual = 0;
 //<PANTALLAS>
 #define UIMAIN 0
 #define UIEDIT 1
 #define UIAUTOSETUP 2
 
-unsigned short currentUi = UIMAIN;
+uint16_t currentUi = UIMAIN;
 //</PANTALLAS>
 
 #endif // GLOBALVARS_H

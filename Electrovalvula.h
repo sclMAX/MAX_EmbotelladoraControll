@@ -2,15 +2,16 @@
 #define ELECTROVALVULA_H
 
 #include "Arduino.h"
-class Electrovalvula{
-    private:
-        uint16_t pin;
-        volatile bool onOff;
-    public:
-        Electrovalvula(uint16_t pin);
-        void on();
-        void off();
-        bool isOn();
+class Electrovalvula {
+private:
+  byte pin;
+  volatile bool onOff;
+
+public:
+  Electrovalvula(byte pin);
+  void on();
+  void off();
+  bool isOn();
 };
 
-#endif //ELECTROVALVULA_H
+#endif // ELECTROVALVULA_H

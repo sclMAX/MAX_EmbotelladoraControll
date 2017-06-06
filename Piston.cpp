@@ -1,7 +1,7 @@
 #include "Piston.h"
 #include "config.h"
 
-Piston::Piston(uint16_t pin) : pin(pin) {
+Piston::Piston(byte pin) : pin(pin) {
   pinMode(pin, OUTPUT);
   off();
 };

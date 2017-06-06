@@ -20,16 +20,16 @@ Electrovalvula ECO2_Out1 =
 
 void setEmergencia() {
   isEmergencia = true;
-  msgProcesoActual = "EMERGENCIA!";
+  msgProcesoActual = F("EMERGENCIA!");
 }
 void llenadorBajar() {
   if (!isEmergencia) {
     if (PDesplazamiento.isOn()) {
       PLlenado.on();
-      msgProcesoActual = "BAJ. LLENAD";
+      msgProcesoActual = F("BAJ. LLENAD");
     } else {
       isEmergencia = true;
-      msgProcesoActual = "EMERGENCIA!";
+      msgProcesoActual = F("EMERGENCIA!");
     }
   }
 }
@@ -37,7 +37,7 @@ void llenadorSubir() {
   if (!isEmergencia) {
     if (!EBeer.isOn() && !ECO2_In.isOn()) {
       PLlenado.off();
-      msgProcesoActual = "SUB. LLENAD";
+      msgProcesoActual = F("SUB. LLENAD");
     } else {
       setEmergencia();
     }
@@ -47,7 +47,7 @@ void botellaToLlenado() {
   if (!isEmergencia) {
     if (!PTapado.isOn()) {
       PDesplazamiento.on();
-      msgProcesoActual = "MOV BOTELLA";
+      msgProcesoActual = F("MOV BOTELLA");
     } else {
       setEmergencia();
     }
@@ -57,7 +57,7 @@ void botellaToTapado() {
   if (!isEmergencia) {
     if (!PLlenado.isOn()) {
       PDesplazamiento.off();
-      msgProcesoActual = "MOV BOTELLA";
+      msgProcesoActual = F("MOV BOTELLA");
     } else {
       setEmergencia();
     }
@@ -67,7 +67,7 @@ void tapadorBajar() {
   if (!isEmergencia) {
     if (!PDesplazamiento.isOn()) {
       PTapado.on();
-      msgProcesoActual = "BAJ. TAPADO";
+      msgProcesoActual = F("BAJ. TAPADO");
     } else {
       setEmergencia();
     }
@@ -75,13 +75,13 @@ void tapadorBajar() {
 }
 void tapadorSubir() {
   PTapado.off();
-  msgProcesoActual = "SUB. TAPADO";
+  msgProcesoActual = F("SUB. TAPADO");
 }
 void co2InOn() {
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       ECO2_In.on();
-      msgProcesoActual = "CO2 INGRESA";
+      msgProcesoActual = F("CO2 INGRESA");
     } else {
       setEmergencia();
     }
@@ -89,16 +89,16 @@ void co2InOn() {
 }
 void co2InOff() {
   ECO2_In.off();
-  msgProcesoActual = "CO2 IN. OFF";
+  msgProcesoActual = F("CO2 IN. OFF");
 }
 void co2Out1On() {
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       ECO2_Out1.on();
-      if (!(msgProcesoActual == "BEER INGRES")) {
-        msgProcesoActual = "CO2 LIBERAR";
+      if (!(msgProcesoActual == F("BEER INGRES"))) {
+        msgProcesoActual = F("CO2 LIBERAR");
       } else {
-        msgProcesoActual = "BEER >< CO2";
+        msgProcesoActual = F("BEER >< CO2");
       }
     } else {
       setEmergencia();
@@ -107,13 +107,13 @@ void co2Out1On() {
 }
 void co2Out1Off() {
   ECO2_Out1.off();
-  msgProcesoActual = "CO2 LI. OFF";
+  msgProcesoActual = F("CO2 LI. OFF");
 }
 void beerOn() {
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       EBeer.on();
-      msgProcesoActual = "BEER INGRES";
+      msgProcesoActual = F("BEER INGRES");
     } else {
       setEmergencia();
     }
@@ -121,7 +121,7 @@ void beerOn() {
 }
 void beerOff() {
   EBeer.off();
-  msgProcesoActual = "BEER IN OFF";
+  msgProcesoActual = F("BEER IN OFF");
 }
 void finLlenado() {
   if (!isEmergencia) {
@@ -141,7 +141,7 @@ void restaurarEmergencia() {
     PDesplazamiento.off();
     isEmergencia = false;
     isInProceso = false;
-    msgProcesoActual = "";
+    msgProcesoActual = F("");
   }
 }
 

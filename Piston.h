@@ -6,11 +6,11 @@
 
 class Piston {
 private:
-  uint16_t pin;
+  byte pin;
   volatile bool onOff;
 
 public:
-  Piston(uint16_t pin);
+  Piston(byte pin);
   void on();
   void off();
   bool isOn();
