@@ -7,13 +7,13 @@
 #include "processManager.h"
 #include "configStorage.h"
 
-time_t initTime = 0;
-byte *currentVar;
 byte etapa = 0;
 void setTiempo() {
-  int t = second(now() - initTime);
-  currentVar = (t > 0) ? t : 1;
-  initTime = 0;
+  if (currentVar && (initTime > 0)) {
+    int t = second(now() - initTime);
+    currentVar = (t > 0) ? t : 1;
+    initTime = 0;
+  }
 }
 void uiAutoSetupTecladoHandler(char &key) {
   switch (key) {
@@ -21,7 +21,6 @@ void uiAutoSetupTecladoHandler(char &key) {
     if (etapa == 0) {
       botellaToLlenado();
       delay((RPOS_BOTELLA * 1000));
-      initTime = now();
       *currentVar = &botellas[currentBotella].tMovLlenador;
       llenadorBajar();
       etapa = 1;
@@ -30,7 +29,6 @@ void uiAutoSetupTecladoHandler(char &key) {
   case '2':
     if (etapa == 1) {
       setTiempo();
-      initTime = now();
       *currentVar = &botellas[currentBotella].tCargaCO2_Barrido;
       co2InOn();
       etapa = 2;
@@ -41,7 +39,6 @@ void uiAutoSetupTecladoHandler(char &key) {
       setTiempo();
       co2InOff();
       delay(RCOMUN * 1000);
-      initTime = now();
       *currentVar = &botellas[currentBotella].tDescargaCO2_Barrido;
       co2Out1On();
       etapa = 3;
@@ -58,7 +55,6 @@ void uiAutoSetupTecladoHandler(char &key) {
       delay(RCOMUN * 1000);
       beerOn();
       delay(RCOMUN * 1000);
-      initTime = now();
       *currentVar = &botellas[currentBotella].tCargaBeer;
       co2Out1On();
       etapa = 4;
@@ -79,7 +75,6 @@ void uiAutoSetupTecladoHandler(char &key) {
       setTiempo();
       beerOff();
       delay(RCOMUN * 1000);
-      initTime = now();
       *currentVar = &botellas[currentBotella].tEstCO2;
       co2Out1On();
       etapa = 6;
@@ -94,7 +89,6 @@ void uiAutoSetupTecladoHandler(char &key) {
       delay(botellas[currentBotella].tMovLlenador * 1000);
       botellaToTapado();
       delay((RPOS_BOTELLA * 1000));
-      initTime = now();
       *currentVar = &botellas[currentBotella].tMovTapador;
       tapadorBajar();
       etapa = 7;

@@ -23,6 +23,7 @@ void setEmergencia() {
   msgProcesoActual = F("EMERGENCIA!");
 }
 void llenadorBajar() {
+  initTime = now();
   if (!isEmergencia) {
     if (PDesplazamiento.isOn()) {
       PLlenado.on();
@@ -64,6 +65,7 @@ void botellaToTapado() {
   }
 }
 void tapadorBajar() {
+  initTime = now();
   if (!isEmergencia) {
     if (!PDesplazamiento.isOn()) {
       PTapado.on();
@@ -78,6 +80,7 @@ void tapadorSubir() {
   msgProcesoActual = F("SUB. TAPADO");
 }
 void co2InOn() {
+  initTime = now();
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       ECO2_In.on();
@@ -92,6 +95,7 @@ void co2InOff() {
   msgProcesoActual = F("CO2 IN. OFF");
 }
 void co2Out1On() {
+  initTime = now();
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       ECO2_Out1.on();

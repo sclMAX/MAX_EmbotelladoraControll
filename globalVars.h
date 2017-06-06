@@ -27,6 +27,9 @@ bool isEmergencia = false;
 uint16_t cantBotellas = 0;
 unsigned long cantBeer = 0;
 __FlashStringHelper *msgProcesoActual = 0;
+time_t initTime = 0;
+byte *currentVar = 0;
+
 //<PANTALLAS>
 #define UIMAIN 0
 #define UIEDIT 1

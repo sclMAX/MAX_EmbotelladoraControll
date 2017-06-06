@@ -12,7 +12,19 @@ void uiMainTecladoHandler(char &key) {
       lcd.clear();
       currentBotella = String(key).toInt() - 1;
     }
-
+    break;
+  case '*':
+    if (isInProceso) {
+      co2Out1Off();
+      currentVar = botellas[currentBotella].tCargaBeer;
+      setTiempo();
+      saveConfig();
+    }
+    break;
+  case '#':
+    if (isInProceso) {
+      beerOff();
+    }
     break;
   case 'A':
     lcd.clear();
