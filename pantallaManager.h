@@ -3,8 +3,9 @@
 
 #include "Arduino.h"
 #include "globalVars.h"
-#include "uiMain.h"
 #include "uiEdit.h"
+#include "uiMain.h"
+#include "uiAutoSetup.h"
 
 void pantallaInit() {
   lcd.begin(16, 2);
@@ -22,6 +23,9 @@ void pantallaHandler() {
     break;
   case UIEDIT:
     uiEditPantallaHandler();
+    break;
+  case UIAUTOSETUP:
+    uiAutoSetupPantallaHandler();
     break;
   }
 }

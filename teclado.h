@@ -4,6 +4,7 @@
 #include "config.h"
 #include "globalVars.h"
 #include "uiEdit.h"
+#include "uiAutoSetup.h"
 #include <Key.h>
 #include <Keypad.h>
 
@@ -27,6 +28,9 @@ void tecladoHandler() {
       break;
     case UIEDIT:
       uiEditTecladoHandler(key);
+      break;
+    case UIAUTOSETUP:
+      uiAutoSetupTecladoHandler(key);
       break;
     }
   }
