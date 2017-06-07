@@ -107,9 +107,13 @@ void uiAutoSetupTecladoHandler(char &key) {
 
 void uiAutoSetupPantallaHandler() {
   lcd.setCursor(0, 0);
-  lcd.print(F("1-8 Pro A Gu D <"));
+  lcd.print(F("1a8-Pro A-Gu D-<"));
   lcd.setCursor(0, 1);
   lcd.print(msgProcesoActual);
+  lcd.setCursor(13, 1);
+  lcd.print(F("P"));
+  lcd.setCursor(14, 1);
+  lcd.print((etapa < 8 ? etapa + 1 : 8));
 }
 
 #endif // AUTOSETUP_H

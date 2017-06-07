@@ -89,6 +89,7 @@ void uiEditTecladoHandler(char &key) {
         break;
       }
       saveConfig();
+      data = "";
     }
     break;
   }
@@ -126,55 +127,51 @@ void drawItemCapacidad(uint8_t pos, bool sel, uint16_t &item) {
   }
 }
 
-void uiEditPantallaHandler() {
-  switch (currentItem) {
-  case 0: // capacidad
-    lcd.setCursor(0, 0);
-    lcd.print(F("A-Ed "));
-    lcd.setCursor(5, 0);
-    lcd.print(F("B-"));
+void drawAyuda() {
+  lcd.setCursor(0, 0);
+  if (isInEditItem) {
+    lcd.print(F("*-Bor #-Guar D-<"));
+  } else {
+    lcd.print(F("A-Edt B-"));
     lcd.write(LCD_CHAR_UP);
     lcd.setCursor(9, 0);
     lcd.print(F("C-"));
     lcd.write(LCD_CHAR_DOWN);
     lcd.setCursor(13, 0);
     lcd.print(F("D-<"));
+  }
+}
+
+void uiEditPantallaHandler() {
+  drawAyuda();
+  switch (currentItem) {
+  case 0: // capacidad
     drawItemCapacidad(1, true, botellas[currentBotella].capacidad);
     break;
   case 1:
-    drawItemCapacidad(0, false, botellas[currentBotella].capacidad);
     drawItem(1, true, F("TMov Llen:"), botellas[currentBotella].tMovLlenador);
     break;
   case 2:
-    drawItem(0, false, F("TMov Llen:"), botellas[currentBotella].tMovLlenador);
     drawItem(1, true, F("TMov Tapa:"), botellas[currentBotella].tMovTapador);
     break;
   case 3:
-    drawItem(0, false, F("TMov Tapa:"), botellas[currentBotella].tMovTapador);
     drawItem(1, true, F("TCO2 Carg:"),
              botellas[currentBotella].tCargaCO2_Barrido);
     break;
   case 4:
-    drawItem(0, false, F("TCO2 Carg:"),
-             botellas[currentBotella].tCargaCO2_Barrido);
     drawItem(1, true, F("TCO2 Desc:"),
              botellas[currentBotella].tDescargaCO2_Barrido);
     break;
   case 5:
-    drawItem(0, false, F("TCO2 Desc:"),
-             botellas[currentBotella].tDescargaCO2_Barrido);
     drawItem(1, true, F("T Llenado:"), botellas[currentBotella].tCargaBeer);
     break;
   case 6:
-    drawItem(0, false, F("T Llenado:"), botellas[currentBotella].tCargaBeer);
     drawItem(1, true, F("T Es Beer:"), botellas[currentBotella].tEstBeer);
     break;
   case 7:
-    drawItem(0, false, F("T Es Beer:"), botellas[currentBotella].tEstBeer);
     drawItem(1, true, F("T Est CO2:"), botellas[currentBotella].tEstCO2);
     break;
   case 8:
-    drawItem(0, false, F("T Est CO2:"), botellas[currentBotella].tEstCO2);
     lcd.setCursor(0, 1);
     lcd.write(LCD_CHAR_SELECT);
     lcd.setCursor(1, 1);
