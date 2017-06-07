@@ -99,7 +99,7 @@ void co2Out1On() {
   if (!isEmergencia) {
     if (PLlenado.isOn()) {
       ECO2_Out1.on();
-      if (!(msgProcesoActual == F("BEER INGRES"))) {
+      if (!EBeer.isOn()) {
         msgProcesoActual = F("CO2 LIBERAR");
       } else {
         msgProcesoActual = F("BEER >< CO2");
@@ -132,6 +132,7 @@ void finLlenado() {
     isInProceso = false;
     cantBeer = cantBeer + (botellas[currentBotella].capacidad);
     cantBotellas++;
+    msgProcesoActual = F("");
   }
 }
 

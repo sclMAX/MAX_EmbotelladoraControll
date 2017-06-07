@@ -16,8 +16,7 @@ void uiMainTecladoHandler(char &key) {
   case '*':
     if (isInProceso) {
       co2Out1Off();
-      currentVar = botellas[currentBotella].tCargaBeer;
-      setTiempo();
+      botellas[currentBotella].tCargaBeer = getTiempo();
       saveConfig();
     }
     break;

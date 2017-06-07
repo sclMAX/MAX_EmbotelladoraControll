@@ -3,50 +3,41 @@
 
 #include "Arduino.h"
 #include "Botella.h"
+#include "configStorage.h"
 #include "globalVars.h"
 #include "processManager.h"
-#include "configStorage.h"
 
 byte etapa = 0;
-void setTiempo() {
-  if (currentVar && (initTime > 0)) {
-    int t = second(now() - initTime);
-    currentVar = (t > 0) ? t : 1;
-    initTime = 0;
-  }
-}
+
 void uiAutoSetupTecladoHandler(char &key) {
   switch (key) {
   case '1':
     if (etapa == 0) {
       botellaToLlenado();
       delay((RPOS_BOTELLA * 1000));
-      *currentVar = &botellas[currentBotella].tMovLlenador;
       llenadorBajar();
       etapa = 1;
     }
     break;
   case '2':
     if (etapa == 1) {
-      setTiempo();
-      *currentVar = &botellas[currentBotella].tCargaCO2_Barrido;
+      botellas[currentBotella].tMovLlenador = getTiempo();
       co2InOn();
       etapa = 2;
     }
     break;
   case '3':
     if (etapa == 2) {
-      setTiempo();
+      botellas[currentBotella].tCargaCO2_Barrido = getTiempo();
       co2InOff();
       delay(RCOMUN * 1000);
-      *currentVar = &botellas[currentBotella].tDescargaCO2_Barrido;
       co2Out1On();
       etapa = 3;
     }
     break;
   case '4':
     if (etapa == 3) {
-      setTiempo();
+      botellas[currentBotella].tDescargaCO2_Barrido = getTiempo();
       co2Out1Off();
       delay(RCOMUN * 1000);
       co2InOn();
@@ -55,48 +46,44 @@ void uiAutoSetupTecladoHandler(char &key) {
       delay(RCOMUN * 1000);
       beerOn();
       delay(RCOMUN * 1000);
-      *currentVar = &botellas[currentBotella].tCargaBeer;
       co2Out1On();
       etapa = 4;
     }
     break;
   case '5':
     if (etapa == 4) {
-      setTiempo();
+      botellas[currentBotella].tCargaBeer = getTiempo();
       co2Out1Off();
       delay(RCOMUN * 1000);
       initTime = now();
-      *currentVar = &botellas[currentBotella].tEstBeer;
       etapa = 5;
     }
     break;
   case '6':
     if (etapa == 5) {
-      setTiempo();
+      botellas[currentBotella].tEstBeer = getTiempo();
       beerOff();
       delay(RCOMUN * 1000);
-      *currentVar = &botellas[currentBotella].tEstCO2;
       co2Out1On();
       etapa = 6;
     }
     break;
   case '7':
     if (etapa == 6) {
-      setTiempo();
+      botellas[currentBotella].tEstCO2 = getTiempo();
       co2Out1Off();
       delay(RCOMUN * 1000);
       llenadorSubir();
       delay(botellas[currentBotella].tMovLlenador * 1000);
       botellaToTapado();
       delay((RPOS_BOTELLA * 1000));
-      *currentVar = &botellas[currentBotella].tMovTapador;
       tapadorBajar();
       etapa = 7;
     }
     break;
   case '8':
     if (etapa == 7) {
-      setTiempo();
+      botellas[currentBotella].tMovTapador = getTiempo();
       tapadorSubir();
       delay(botellas[currentBotella].tMovTapador * 1000);
       finLlenado();

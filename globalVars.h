@@ -3,12 +3,12 @@
 
 #include "Arduino.h"
 #include "config.h"
+#include "specialChar.h"
 #include "utils.h"
 #include <LiquidCrystal.h>
 #include <Time.h>
 #include <TimeAlarms.h>
 #include <TimeLib.h>
-#include "specialChar.h"
 
 LiquidCrystal lcd(RS, EN, D4, D5, D6, D7); //    ( RS, EN, d4, d5, d6, d7)
 
@@ -28,8 +28,12 @@ uint16_t cantBotellas = 0;
 unsigned long cantBeer = 0;
 __FlashStringHelper *msgProcesoActual = 0;
 time_t initTime = 0;
-byte *currentVar = 0;
 
+byte getTiempo() {
+  int t = second(now() - initTime);
+  initTime = 0;
+  return (t > 0) ? t : 1;
+}
 //<PANTALLAS>
 #define UIMAIN 0
 #define UIEDIT 1
