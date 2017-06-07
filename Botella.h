@@ -9,9 +9,9 @@ typedef struct {
   byte tMovTapador = 3;          // (Seg.) Espera movimiento Tapador.
   byte tCargaCO2_Barrido = 2;    // (Seg.) carga CO2 Barrido inicial.
   byte tDescargaCO2_Barrido = 1; // (Seg.) descarga CO2 Barrido incial.
-  byte tCargaBeer = 10;          // (Seg.) carga de cerveza.
-  byte tEstBeer = 2;             // (Seg.) Estabilizacion presion beer.
-  byte tEstCO2 = 2;              // (Seg.) Estabilizacion presion CO2.
+  byte tCargaBeer = 30;          // (Seg.) carga de cerveza.
+  byte tEstBeer = 5;             // (Seg.) Estabilizacion presion beer.
+  byte tEstCO2 = 10;              // (Seg.) Estabilizacion presion CO2.
 } TBotella;
 #define botellasTam 6
 TBotella botellas[botellasTam];

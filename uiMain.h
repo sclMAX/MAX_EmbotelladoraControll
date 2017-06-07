@@ -5,24 +5,25 @@
 #include "globalVars.h"
 #include "processManager.h"
 
-void uiMainTecladoHandler(char &key) {
-  switch (key) {
+void uiMainTecladoHandler(char &key)
+{
+  switch (key)
+  {
   case '1' ... '6':
-    if (!isInProceso) {
+    if (!isInProceso)
+    {
       lcd.clear();
       currentBotella = String(key).toInt() - 1;
     }
     break;
-  case '*':
-    if (isInProceso) {
+  case '#':
+    if (isInProceso && EBeer.isOn())
+    {
       co2Out1Off();
       botellas[currentBotella].tCargaBeer = getTiempo();
+      cancelarAlarmas();
+      etapaFinal(0, botellas[currentBotella]);
       saveConfig();
-    }
-    break;
-  case '#':
-    if (isInProceso) {
-      beerOff();
     }
     break;
   case 'A':
@@ -30,7 +31,8 @@ void uiMainTecladoHandler(char &key) {
     llenarBotella(botellas[currentBotella]);
     break;
   case 'B':
-    if (!isInProceso) {
+    if (!isInProceso)
+    {
       lcd.clear();
       currentUi = UIEDIT;
     }
@@ -44,7 +46,8 @@ void uiMainTecladoHandler(char &key) {
   }
 }
 
-void uiMainPantallaHandler() {
+void uiMainPantallaHandler()
+{
   lcd.setCursor(0, 0);
   lcd.print(F("B"));
   lcd.setCursor(1, 0);
@@ -61,10 +64,13 @@ void uiMainPantallaHandler() {
   cbeer = cbeer / 1000;
   lcd.print(ftostr32(cbeer));
   lcd.setCursor(0, 1);
-  if (isInProceso) {
+  if (isInProceso)
+  {
     lcd.print(msgProcesoActual);
-  } else {
-    lcd.print(F("[A]In [B]Ed "));
+  }
+  else
+  {
+    lcd.print(F("A-i B-e #-g "));
   }
   lcd.setCursor(12, 1);
   lcd.print(F("U"));

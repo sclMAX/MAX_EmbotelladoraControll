@@ -6,7 +6,7 @@
 #include "globalVars.h"
 #include <EEPROM.h>
 
-#define version  2
+#define version  3
 int eeAdress = 0;
 
 void saveConfig() {
