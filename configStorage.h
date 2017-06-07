@@ -6,7 +6,7 @@
 #include "globalVars.h"
 #include <EEPROM.h>
 
-#define version  3
+#define version  1
 int eeAdress = 0;
 
 void saveConfig() {
@@ -15,7 +15,7 @@ void saveConfig() {
   eeAdress += sizeof(int);
   for (int i = 0; i < botellasTam; i++) {
     EEPROM.put(eeAdress, botellas[i]);
-    eeAdress += sizeof(TBotella);
+    eeAdress += sizeof(botellas[i]);
   }
 }
 
@@ -26,8 +26,8 @@ void readConfig() {
   if (eeVersion == version) {
     eeAdress += sizeof(int);
     for (int i = 0; i < botellasTam; i++) {
-      EEPROM.put(eeAdress, botellas[i]);
-      eeAdress += sizeof(TBotella);
+      EEPROM.get(eeAdress, botellas[i]);
+      eeAdress += sizeof(botellas[i]);
     }
   }else{
     botellas[0].capacidad = 330;
