@@ -35,6 +35,7 @@ void uiMainTecladoHandler(char &key) {
     break;
   case 'C':
     isEmergencia = true;
+    cancelarAlarmas(); 
     break;
   case 'D':
     restaurarEmergencia();
