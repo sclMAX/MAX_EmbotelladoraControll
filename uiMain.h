@@ -14,18 +14,8 @@ void uiMainTecladoHandler(char &key) {
     }
     break;
   case '#':
-    if (isInProceso && EBeer.isOn()) {
-      co2Out1Off();
-      botellas[currentBotella].tCargaBeer = getTiempo();
-      cancelarAlarmas();
-      byte ct = 0;
-      etapaFinal(ct, botellas[currentBotella]);
-      saveConfig();
-    }
     break;
   case 'A':
-    lcd.clear();
-    llenarBotella(botellas[currentBotella]);
     break;
   case 'B':
     if (!isInProceso) {
@@ -34,11 +24,8 @@ void uiMainTecladoHandler(char &key) {
     }
     break;
   case 'C':
-    isEmergencia = true;
-    cancelarAlarmas(); 
     break;
   case 'D':
-    restaurarEmergencia();
     break;
   }
 }
@@ -58,13 +45,8 @@ void uiMainPantallaHandler() {
   float cbeer = 0.00;
   cbeer = cantBeer;
   cbeer = cbeer / 1000;
-  lcd.print(ftostr32(cbeer));
+  lcd.print(cbeer);
   lcd.setCursor(0, 1);
-  if (isInProceso) {
-    lcd.print(msgProcesoActual);
-  } else {
-    lcd.print(F("A-i B-e #-g "));
-  }
   lcd.setCursor(12, 1);
   lcd.print(F("U"));
   lcd.setCursor(13, 1);

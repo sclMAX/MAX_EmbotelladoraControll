@@ -1,18 +1,17 @@
-#ifndef PISTON_H
-#define PISTON_H
+#ifndef ACTUADOR_H
+#define ACTUADOR_H
 
 #include "Arduino.h"
 
-
-class Piston {
+class Actuador {
 private:
   byte pin;
   volatile bool onOff;
 
 public:
-  Piston(byte pin);
+  Actuador(byte pin);
   void on();
   void off();
   bool isOn();
 };
-#endif
+#endif // ACTUADOR_H

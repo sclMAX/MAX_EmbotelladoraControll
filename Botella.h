@@ -2,16 +2,12 @@
 #define BOTELLA_H
 
 #include "Arduino.h"
+#include "globalVars.h"
 
 typedef struct {
-  uint16_t capacidad = 330;          // (cc) Capacidad de la botella.
-  byte tMovLlenador = 3;         // (Seg.) Espera movimiento llenador.
-  byte tMovTapador = 3;          // (Seg.) Espera movimiento Tapador.
-  byte tCargaCO2_Barrido = 2;    // (Seg.) carga CO2 Barrido inicial.
-  byte tDescargaCO2_Barrido = 1; // (Seg.) descarga CO2 Barrido incial.
-  byte tCargaBeer = 30;          // (Seg.) carga de cerveza.
-  byte tEstBeer = 5;             // (Seg.) Estabilizacion presion beer.
-  byte tEstCO2 = 10;              // (Seg.) Estabilizacion presion CO2.
+  uint16_t capacidad = 330;     // (cc) Capacidad de la botella.
+  ulong_t tLlenado = 40 * 1000; // (mseg.)Tiempo de Llenado.
+  ulong_t tEstCO2 = 60 * 1000;  // (mseg.)Tiempo descompresion CO2.
 } TBotella;
 #define botellasTam 6
 TBotella botellas[botellasTam];
