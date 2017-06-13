@@ -13,43 +13,31 @@ void uiMainTecladoHandler(char &key) {
       currentBotella = String(key).toInt() - 1;
     }
     break;
-  case '#':
+  case 'A': // Iniciar Carga
+    lcd.clear();
+    currentUi = UICARGAR;
+    cEtapa = INICIO;
+    isInProceso = true;
     break;
-  case 'A':
+  case 'B': // Editar
+    lcd.clear();
+    currentUi = UIEDIT;
     break;
-  case 'B':
-    if (!isInProceso) {
-      lcd.clear();
-      currentUi = UIEDIT;
-    }
-    break;
-  case 'C':
-    break;
-  case 'D':
+  case 'D': // Reset Contadores
+    cantBeer = 0;
+    cantBotellas = 0;
     break;
   }
 }
-#define TXT_B F("B")
+
 void uiMainPantallaHandler() {
+  lcd.noAutoscroll();
   lcd.setCursor(0, 0);
-  lcd.print(TXT_B);
-  lcd.setCursor(1, 0);
-  lcd.print((currentBotella + 1));
-  lcd.setCursor(2, 0);
-  lcd.print(" C");
-  lcd.setCursor(4, 0);
-  lcd.print(botellas[currentBotella].capacidad);
-  lcd.setCursor(8, 0);
-  lcd.print(" L");
-  lcd.setCursor(10, 0);
-  float cbeer = 0.00;
-  cbeer = cantBeer;
-  cbeer = cbeer / 1000;
-  lcd.print(cbeer);
+  lcd.print(TXT_MAIN_OPCIONES);
   lcd.setCursor(0, 1);
-  lcd.setCursor(12, 1);
-  lcd.print(F("U"));
-  lcd.setCursor(13, 1);
-  lcd.print(cantBotellas);
+  String txt = "B" + String(currentBotella + 1) + "-" +
+               String(botellas[currentBotella].capacidad) + " U" +
+               String(cantBotellas) + " L" + String(getCantBeerLitros());
+  lcd.print(txt);
 }
 #endif // UIMAIN_H

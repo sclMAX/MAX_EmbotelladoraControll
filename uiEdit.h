@@ -23,29 +23,20 @@ void uiEditTecladoHandler(char &key) {
     }
     break;
   case 'A':
-    if (currentItem == 8) {
-      currentUi = UIAUTOSETUP;
-      lcd.clear();
-    } else {
-      isInEditItem = true;
-      lcd.clear();
-    }
-    break;
-  case 'B':
     if (!isInEditItem) {
       currentItem--;
       currentItem = (currentItem > 0) ? currentItem : 0;
       lcd.clear();
     }
     break;
-  case 'C':
+  case 'B':
     if (!isInEditItem) {
       currentItem++;
       currentItem = (currentItem < 8) ? currentItem : 8;
       lcd.clear();
     }
     break;
-  case 'D':
+  case 'C':
     if (isInEditItem) {
       isInEditItem = false;
     } else {
@@ -67,36 +58,24 @@ void uiEditTecladoHandler(char &key) {
         botellas[currentBotella].capacidad = data.toInt();
         break;
       case 1:
-        botellas[currentBotella].tMovLlenador = data.toInt();
+        botellas[currentBotella].tLlenado = data.toInt();
         break;
       case 2:
-        botellas[currentBotella].tMovTapador = data.toInt();
-        break;
-      case 3:
-        botellas[currentBotella].tCargaCO2_Barrido = data.toInt();
-        break;
-      case 4:
-        botellas[currentBotella].tDescargaCO2_Barrido = data.toInt();
-        break;
-      case 5:
-        botellas[currentBotella].tCargaBeer = data.toInt();
-        break;
-      case 6:
-        botellas[currentBotella].tEstBeer = data.toInt();
-        break;
-      case 7:
         botellas[currentBotella].tEstCO2 = data.toInt();
         break;
       }
+
       saveConfig();
       data = "";
+    } else {
+      isInEditItem = true;
     }
     break;
   }
 }
 
 void drawItem(uint8_t pos, bool sel, const __FlashStringHelper *txt,
-              byte &item) {
+              ulong_t &item) {
   lcd.setCursor(0, pos);
   if (sel) {
     lcd.write(LCD_CHAR_SELECT);
@@ -149,33 +128,10 @@ void uiEditPantallaHandler() {
     drawItemCapacidad(1, true, botellas[currentBotella].capacidad);
     break;
   case 1:
-    drawItem(1, true, F("TMov Llen:"), botellas[currentBotella].tMovLlenador);
+    drawItem(1, true, F("TMov Llen:"), botellas[currentBotella].tLlenado);
     break;
   case 2:
-    drawItem(1, true, F("TMov Tapa:"), botellas[currentBotella].tMovTapador);
-    break;
-  case 3:
-    drawItem(1, true, F("TCO2 Carg:"),
-             botellas[currentBotella].tCargaCO2_Barrido);
-    break;
-  case 4:
-    drawItem(1, true, F("TCO2 Desc:"),
-             botellas[currentBotella].tDescargaCO2_Barrido);
-    break;
-  case 5:
-    drawItem(1, true, F("T Llenado:"), botellas[currentBotella].tCargaBeer);
-    break;
-  case 6:
-    drawItem(1, true, F("T Es Beer:"), botellas[currentBotella].tEstBeer);
-    break;
-  case 7:
-    drawItem(1, true, F("T Est CO2:"), botellas[currentBotella].tEstCO2);
-    break;
-  case 8:
-    lcd.setCursor(0, 1);
-    lcd.write(LCD_CHAR_SELECT);
-    lcd.setCursor(1, 1);
-    lcd.print(F("AUTO CONFIGURAR"));
+    drawItem(1, true, F("TMov Tapa:"), botellas[currentBotella].tEstCO2);
     break;
   }
 }

@@ -1,5 +1,5 @@
 {
     "sketch": "MAX_EmbotelladoraControll.ino",
     "board": "arduino:avr:uno",
-    "port": "/dev/ttyUSB0"
+    "port": "COM3"
 }

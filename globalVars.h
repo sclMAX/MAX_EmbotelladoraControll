@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "config.h"
+#include "textos.h"
 #include "specialChar.h"
 #include <LiquidCrystal.h>
 
@@ -19,7 +20,7 @@ void lcdInit() {
   lcd.setCursor(0, 0);
   lcd.print(F(" EMBOTELLADORA  "));
   lcd.setCursor(0, 1);
-  lcd.print(F("  v1.0 by MAX   "));
+  lcd.print(F("  v2.0 by MAX   "));
   delay(3000);
   lcd.clear();
   //</SPLASH>
@@ -27,10 +28,14 @@ void lcdInit() {
 
 #define UIMAIN 0
 #define UIEDIT 1
+#define UICARGAR 2
 uint16_t currentUi = UIMAIN;
 //</LCD>
 //<PROCESO>
 volatile bool isInProceso = false;
+volatile bool isManual = false;
+volatile bool isLleno = false;
+String msgProceso = "";
 uint16_t cantBotellas = 0;
 ulong_t cantBeer = 0;
 ulong_t tBotellaToLlenado = 500; //(mseg.) Tiempo botella a llenador.
@@ -42,6 +47,8 @@ ulong_t tBarridoCO2Out = 2000;   //(mseg.) Tiempo Salida CO2 Barrido.
 ulong_t tPresurizado = 4000;     //(mseg.) Tiempo ingreso CO2 presurizado.
 ulong_t tBajaTapador = 4000;     //(mseg.) Tiempo bajada tapador.
 ulong_t tSubeTapador = 500;      //(mseg.) Tiempo subida tapador.
+
+inline float getCantBeerLitros() { return (float)cantBeer / 1000; }
 //</PROCESO>
 
 #endif // GLOBALVARS_H

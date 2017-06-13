@@ -34,10 +34,12 @@ ulong_t tFaltante = 0;
 
 bool chkEspera(const ulong_t &tEspera, const ulong_t &tNow) {
   if ((tInicio + tEspera) <= tNow) {
-    tFaltante = tInicio = 0;
+    tFaltante = 0;
+    tInicio = 0;
     return true;
   } else {
     tFaltante = (tInicio + tEspera) - tNow;
+    tFaltante = (tFaltante > 0) ? tFaltante : 0;
     return false;
   }
 }
@@ -100,6 +102,31 @@ bool llenadoOn() {
   return false;
 }
 
+void cancelar() {
+  isInProceso = false;
+  tInicio = 0;
+  tFaltante = 0;
+  EBeer.off();
+  ECO2_In.off();
+  PLlenado.off();
+  ECO2_Out.off();
+  PTapado.off();
+  delay(500);
+  PDesplazamiento.off();
+  isLleno = false;
+  isManual = false;
+  cEtapa = INICIO;
+  currentUi = UIMAIN;
+}
+void generarMsg(const __FlashStringHelper *s, bool showTime = false) {
+  msgProceso = String(s);
+  if (showTime) {
+    msgProceso += String(tFaltante);
+  }
+  for (int i = msgProceso.length(); i < 16; i++) {
+    msgProceso.concat(" ");
+  }
+}
 void manageProcess() {
   if (isInProceso) {
     ulong_t tNow = millis();
@@ -109,6 +136,7 @@ void manageProcess() {
         if (chkEspera(tBotellaToLlenado, tNow)) {
           cEtapa = BAJALLENADOR;
         }
+        generarMsg(TXT_MOVTOLLENADO, true);
       } else {
         if (botellaToLlenado())
           tInicio = tNow;
@@ -119,6 +147,7 @@ void manageProcess() {
         if (chkEspera(tBajaLlenador, tNow)) {
           cEtapa = BARRIDOIN;
         }
+        generarMsg(TXT_BAJALLENADOR, true);
       } else {
         if (bajaLlenador())
           tInicio = tNow;
@@ -129,6 +158,7 @@ void manageProcess() {
         if (chkEspera(tBarridoCO2In, tNow)) {
           cEtapa = BARRIDOOUT;
         }
+        generarMsg(TXT_CO2IN, true);
       } else {
         if (co2BarridoIn())
           tInicio = tNow;
@@ -140,6 +170,7 @@ void manageProcess() {
           ECO2_Out.off();
           cEtapa = PRESURIZADO;
         }
+        generarMsg(TXT_CO2OUT, true);
       } else {
         if (co2BarridoOut())
           tInicio = tNow;
@@ -150,6 +181,7 @@ void manageProcess() {
         if (chkEspera(tPresurizado, tNow)) {
           cEtapa = LLENADO;
         }
+        generarMsg(TXT_CO2IN, true);
       } else {
         if (co2BarridoIn())
           tInicio = tNow;
@@ -157,9 +189,23 @@ void manageProcess() {
       break;
     case LLENADO:
       if (tInicio > 0) {
-        if (chkEspera(botellas[currentBotella].tLlenado, tNow)) {
-          cEtapa = ESTCO2;
+        if (isManual) {
+          if (isLleno) {
+            cEtapa = ESTCO2;
+            isLleno = false;
+            isManual = false;
+            botellas[currentBotella].tLlenado = tFaltante;
+            tInicio = 0;
+            tFaltante = 0;
+          } else {
+            tFaltante = tNow - tInicio;
+          }
+        } else {
+          if (chkEspera(botellas[currentBotella].tLlenado, tNow)) {
+            cEtapa = ESTCO2;
+          }
         }
+        generarMsg(TXT_LLENADO, true);
       } else {
         if (llenadoOn())
           tInicio = tNow;
@@ -170,6 +216,7 @@ void manageProcess() {
         if (chkEspera(botellas[currentBotella].tEstCO2, tNow)) {
           cEtapa = SUBELLENADOR;
         }
+        generarMsg(TXT_ESTCO2, true);
       } else {
         EBeer.off();
         tInicio = tNow;
@@ -180,6 +227,7 @@ void manageProcess() {
         if (chkEspera(tSubeLlenador, tNow)) {
           cEtapa = MOVTOTAPADO;
         }
+        generarMsg(TXT_SUBELLENADOR, true);
       } else {
         if (subeLlenador())
           tInicio = tNow;
@@ -190,6 +238,7 @@ void manageProcess() {
         if (chkEspera(tBotellaToTapado, tNow)) {
           cEtapa = BAJATAPADOR;
         }
+        generarMsg(TXT_MOVTOTAPADO, true);
       } else {
         if (botellaToTapado)
           tInicio = tNow;
@@ -200,6 +249,7 @@ void manageProcess() {
         if (chkEspera(tBajaTapador, tNow)) {
           cEtapa = SUBETAPADOR;
         }
+        generarMsg(TXT_BAJATAPADOR, true);
       } else {
         PTapado.on();
         tInicio = tNow;
@@ -210,6 +260,7 @@ void manageProcess() {
         if (chkEspera(tSubeTapador, tNow)) {
           cEtapa = FIN;
         }
+        generarMsg(TXT_SUBETAPADOR, true);
       } else {
         PTapado.off();
         tInicio = tNow;
@@ -221,7 +272,10 @@ void manageProcess() {
       cantBeer += botellas[currentBotella].capacidad;
       isInProceso = false;
       cEtapa = INICIO;
+      tInicio = 0;
       saveConfig();
+      lcd.clear();
+      currentUi = UIMAIN;
       break;
     }
   }
