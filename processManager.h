@@ -106,7 +106,7 @@ void manageProcess() {
     switch (cEtapa) {
     case INICIO:
       if (tInicio > 0) {
-        if (chkEspera(tDesplazamiento, tNow)) {
+        if (chkEspera(tBotellaToLlenado, tNow)) {
           cEtapa = BAJALLENADOR;
         }
       } else {

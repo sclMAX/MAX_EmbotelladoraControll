@@ -29,10 +29,10 @@ void uiMainTecladoHandler(char &key) {
     break;
   }
 }
-
+#define TXT_B F("B")
 void uiMainPantallaHandler() {
   lcd.setCursor(0, 0);
-  lcd.print(F("B"));
+  lcd.print(TXT_B);
   lcd.setCursor(1, 0);
   lcd.print((currentBotella + 1));
   lcd.setCursor(2, 0);
