@@ -1,7 +1,6 @@
 #include "globalVars.h"
-#include "pantallaManager.h"
-#include "teclado.h"
 #include "configStorage.h"
+#include "uiManager.h"
 
 void setup() {
   readConfig();
@@ -9,7 +8,6 @@ void setup() {
 }
 
 void loop() {
-  tecladoHandler();
-  pantallaHandler();
+  uiHandler();
   manageProcess();
 }

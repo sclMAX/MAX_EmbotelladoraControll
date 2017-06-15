@@ -6,6 +6,8 @@
 #include "textos.h"
 #include "specialChar.h"
 #include <LiquidCrystal.h>
+#include <Key.h>
+#include <Keypad.h>
 
 typedef unsigned long ulong_t;
 //<LCD>
@@ -31,6 +33,17 @@ void lcdInit() {
 #define UICARGAR 2
 uint16_t currentUi = UIMAIN;
 //</LCD>
+//<TECLADO>
+const byte rows = 4;
+const byte cols = 4;
+char keys[rows][cols] = {{'1', '2', '3', 'A'},
+                         {'4', '5', '6', 'B'},
+                         {'7', '8', '9', 'C'},
+                         {'*', '0', '#', 'D'}};
+byte rowPins[rows] = {PINS_TECLADO_ROW};
+byte colPins[cols] = {PINS_TECLADO_COL};
+Keypad Teclado = Keypad(makeKeymap(keys), rowPins, colPins, rows, cols);
+//</TECLADO>
 //<PROCESO>
 volatile bool isInProceso = false;
 volatile bool isManual = false;
