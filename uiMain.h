@@ -27,6 +27,10 @@ void uiMainTecladoHandler(char &key) {
     cantBeer = 0;
     cantBotellas = 0;
     break;
+  case '*':
+    lcd.clear();
+    currentUi = UICONTROLMANUAL;
+    break;
   }
 }
 

@@ -5,6 +5,7 @@
 #include "uiMain.h"
 #include "uiCargar.h"
 #include "uiEdit.h"
+#include "uiControlManual.h"
 
 void tecladoHandler() {
   char key = Teclado.getKey();
@@ -19,6 +20,9 @@ void tecladoHandler() {
     case UICARGAR:
       uiCargarTecladoHandler(key);
       break;
+    case UICONTROLMANUAL:
+      uiControlManualTecladoHandler(key);
+      break;
     }
   }
 }
@@ -32,6 +36,9 @@ void pantallaHandler() {
     break;
   case UICARGAR:
     uiCargarPantallaHandler();
+    break;
+  case UICONTROLMANUAL:
+    uiControlManualPantallaHandler();
     break;
   }
 }

@@ -31,6 +31,7 @@ void lcdInit() {
 #define UIMAIN 0
 #define UIEDIT 1
 #define UICARGAR 2
+#define UICONTROLMANUAL 3
 uint16_t currentUi = UIMAIN;
 //</LCD>
 //<TECLADO>

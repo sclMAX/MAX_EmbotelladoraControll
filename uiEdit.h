@@ -49,8 +49,10 @@ void uiEditTecladoHandler(char &key) {
   case 'C': // Atras
     if (isInEditItem) {
       isInEditItem = false;
+      lcd.clear();
     } else {
       lcd.clear();
+      currentItem = CAPACIDAD;
       currentUi = UIMAIN;
     }
     break;
@@ -105,6 +107,8 @@ void uiEditTecladoHandler(char &key) {
       data = "";
     } else {
       isInEditItem = true;
+      data = "";
+      lcd.clear();
     }
     break;
   }
@@ -140,11 +144,11 @@ void drawAyuda() {
   } else {
     lcd.print(F("A"));
     lcd.write(LCD_CHAR_UP);
-    lcd.setCursor(3, 0);
-    lcd.print(F("B"));
+    lcd.setCursor(2, 0);
+    lcd.print(F(" B"));
     lcd.write(LCD_CHAR_DOWN);
     lcd.setCursor(5, 0);
-    lcd.print(F(" #-Editar C"));
+    lcd.print(F(" #-Edita C"));
     lcd.write(LCD_CHAR_BACK);
   }
 }

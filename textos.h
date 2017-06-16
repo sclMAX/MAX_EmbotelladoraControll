@@ -1,7 +1,7 @@
 #ifndef TEXTOS_H
 #define TEXTOS_H
 
-#define TXT_MAIN_OPCIONES    F("1-6:Bot Ai Be Dr")
+#define TXT_MAIN_OPCIONES    F("1-6b Ai Be Dr *m")
 #define TXT_CARGAR_OPCIONES  F("B:Manua C:Cancel")
 #define TXT_CARGAR_OPCIONES1 F("A:Lleno C:Cancel")
 #define TXT_MOVTOLLENADO F("Botella >> ")
