@@ -6,7 +6,7 @@
 #include "globalVars.h"
 #include <EEPROM.h>
 
-#define version 3
+#define version 2
 
 int eeAdress = 0;
 void incAdress(int cantidad) { eeAdress += cantidad; }
