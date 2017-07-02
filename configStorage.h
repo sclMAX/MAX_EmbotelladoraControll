@@ -6,7 +6,7 @@
 #include "globalVars.h"
 #include <EEPROM.h>
 
-#define version 2
+#define version 3
 
 int eeAdress = 0;
 void incAdress(int cantidad) { eeAdress += cantidad; }
@@ -14,6 +14,7 @@ void saveConfig() {
   eeAdress = 0;
   uint16_t tmpUint = 0;
   ulong_t tmpUlong = 0;
+  bool tmpBool = false;
   EEPROM.put(eeAdress, version);
   incAdress(sizeof(int));
   EEPROM.get(eeAdress, tmpUint);
@@ -81,6 +82,11 @@ void saveConfig() {
     }
     eeAdress += sizeof(TBotella);
   }
+  EEPROM.get(eeAdress, tmpBool);
+  if (tmpBool != isContrapresion) {
+    EEPROM.put(eeAdress, isContrapresion);
+  }
+  incAdress(sizeof(isContrapresion));
 }
 
 void readConfig() {
@@ -116,6 +122,8 @@ void readConfig() {
       EEPROM.get(eeAdress, botellas[i]);
       eeAdress += sizeof(TBotella);
     }
+    EEPROM.get(eeAdress, isContrapresion);
+    incAdress(sizeof(isContrapresion));
   }
 }
 

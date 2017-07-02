@@ -3,6 +3,14 @@
         "cmath": "cpp",
         "complex": "cpp",
         "cstdlib": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "*.tcc": "cpp",
+        "rope": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "future": "cpp",
+        "istream": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }

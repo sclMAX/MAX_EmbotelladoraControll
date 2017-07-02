@@ -25,7 +25,8 @@
                 ],
                 "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
-            }
+            },
+            "intelliSenseMode": "clang-x64"
         },
         {
             "name": "Win32",
@@ -65,7 +66,8 @@
                 ],
                 "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
-            }
+            },
+            "intelliSenseMode": "msvc-x64"
         }
     ]
 }

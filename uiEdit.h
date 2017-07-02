@@ -5,7 +5,8 @@
 #include "globalVars.h"
 #include "configStorage.h"
 
-enum items {
+enum items
+{
   CAPACIDAD,
   TLLENADO,
   TESTCO2,
@@ -17,55 +18,67 @@ enum items {
   TBARRIDOCO2OUT,
   TPRESURIZADO,
   TBAJATAPADOR,
-  TSUBETAPADOR
+  TSUBETAPADOR,
+  CONTRAPRESION
 };
-#define itemsTam 12
+#define itemsTam 13
 enum items currentItem = CAPACIDAD;
 volatile bool isInEditItem = false;
 String data = "";
-void uiEditTecladoHandler(char &key) {
-  switch (key) {
+void uiEditTecladoHandler(char &key)
+{
+  switch (key)
+  {
   case '0' ... '9':
     data.concat(key);
-    if (currentItem == CAPACIDAD) { // capacidad
+    if (currentItem == CAPACIDAD)
+    { // capacidad
       data =
           (data.toInt() > 0) ? ((data.toInt() < 2000) ? data : "3000") : data;
     }
     break;
   case 'A': // Arriba
-    if (!isInEditItem) {
+    if (!isInEditItem)
+    {
       currentItem = currentItem - 1;
       currentItem = (currentItem > 0) ? currentItem : itemsTam - 1;
       lcd.clear();
     }
     break;
   case 'B': // Abajo
-    if (!isInEditItem) {
+    if (!isInEditItem)
+    {
       currentItem = currentItem + 1;
       currentItem = (currentItem < itemsTam) ? currentItem : 0;
       lcd.clear();
     }
     break;
   case 'C': // Atras
-    if (isInEditItem) {
+    if (isInEditItem)
+    {
       isInEditItem = false;
       lcd.clear();
-    } else {
+    }
+    else
+    {
       lcd.clear();
       currentItem = CAPACIDAD;
       currentUi = UIMAIN;
     }
     break;
   case '*': // Borrar
-    if (isInEditItem) {
+    if (isInEditItem)
+    {
       data = "";
       lcd.clear();
     }
     break;
   case '#': // Editar o Guardar
-    if (isInEditItem) {
+    if (isInEditItem)
+    {
       isInEditItem = false;
-      switch (currentItem) {
+      switch (currentItem)
+      {
       case CAPACIDAD:
         botellas[currentBotella].capacidad = data.toInt();
         break;
@@ -102,10 +115,15 @@ void uiEditTecladoHandler(char &key) {
       case TSUBETAPADOR:
         tSubeTapador = data.toInt();
         break;
+      case CONTRAPRESION:
+        isContrapresion = (data.toInt() > 0);
+        break;
       }
       saveConfig();
       data = "";
-    } else {
+    }
+    else
+    {
       isInEditItem = true;
       data = "";
       lcd.clear();
@@ -115,33 +133,60 @@ void uiEditTecladoHandler(char &key) {
 }
 
 void drawItem(uint8_t pos, bool sel, const __FlashStringHelper *txt,
-              ulong_t &item) {
+              ulong_t &item)
+{
   lcd.setCursor(0, pos);
   lcd.print(txt);
   lcd.setCursor(10, pos);
-  if ((isInEditItem) && (sel)) {
+  if ((isInEditItem) && (sel))
+  {
     lcd.print(data);
-  } else {
+  }
+  else
+  {
     lcd.print(item);
   }
 }
-void drawItemCapacidad(uint8_t pos, bool sel, uint16_t &item) {
+void drawItemBool(uint8_t pos, bool sel, const __FlashStringHelper *txt,
+                  bool &item)
+{
+  lcd.setCursor(0, pos);
+  lcd.print(txt);
+  lcd.setCursor(10, pos);
+  if ((isInEditItem) && (sel))
+  {
+    lcd.print((data.toInt() > 0) ? F(" ON   ") : F(" OFF  "));
+  }
+  else
+  {
+    lcd.print(item ? F(" ON   ") : F(" OFF  "));
+  }
+}
+void drawItemCapacidad(uint8_t pos, bool sel, uint16_t &item)
+{
   lcd.setCursor(0, pos);
   lcd.print(F("Capacidad:"));
   lcd.setCursor(10, pos);
-  if ((isInEditItem) && (sel)) {
+  if ((isInEditItem) && (sel))
+  {
     lcd.print(data);
-  } else {
+  }
+  else
+  {
     lcd.print(item);
   }
 }
 
-void drawAyuda() {
+void drawAyuda()
+{
   lcd.setCursor(0, 0);
-  if (isInEditItem) {
+  if (isInEditItem)
+  {
     lcd.print(F("*-Borr #-Guar C"));
     lcd.write(LCD_CHAR_BACK);
-  } else {
+  }
+  else
+  {
     lcd.print(F("A"));
     lcd.write(LCD_CHAR_UP);
     lcd.setCursor(2, 0);
@@ -153,9 +198,11 @@ void drawAyuda() {
   }
 }
 
-void uiEditPantallaHandler() {
+void uiEditPantallaHandler()
+{
   drawAyuda();
-  switch (currentItem) {
+  switch (currentItem)
+  {
   case CAPACIDAD: // capacidad
     drawItemCapacidad(1, true, botellas[currentBotella].capacidad);
     break;
@@ -191,6 +238,9 @@ void uiEditPantallaHandler() {
     break;
   case TSUBETAPADOR:
     drawItem(1, true, F("T Sub Tap:"), tSubeTapador);
+    break;
+  case CONTRAPRESION:
+    drawItemBool(1, true, F("Contrapre:"), isContrapresion);
     break;
   }
 }

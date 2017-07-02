@@ -49,6 +49,7 @@ Keypad Teclado = Keypad(makeKeymap(keys), rowPins, colPins, rows, cols);
 volatile bool isInProceso = false;
 volatile bool isManual = false;
 volatile bool isLleno = false;
+bool isContrapresion = true;
 String msgProceso = "";
 uint16_t cantBotellas = 0;
 ulong_t cantBeer = 0;
