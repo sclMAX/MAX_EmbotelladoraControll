@@ -297,8 +297,8 @@ void manageProcess()
       {
         if (chkEspera(tSubeLlenador, tNow))
         {
-          cEtapa = MOVTOTAPADO;
           ECO2_Out.off();
+          cEtapa = MOVTOTAPADO;
         }
         generarMsg(TXT_SUBELLENADOR, true);
       }
@@ -319,7 +319,7 @@ void manageProcess()
       }
       else
       {
-        if (botellaToTapado)
+        if (botellaToTapado())
           tInicio = tNow;
       }
       break;
